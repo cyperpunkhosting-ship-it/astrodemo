@@ -1,42 +1,34 @@
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const inquiries = pgTable("inquiries", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  phone: text("phone").notNull(),
-  message: text("message").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
+// Static data types - no database tables
 
-export const insertInquirySchema = createInsertSchema(inquiries).pick({
-  name: true,
-  phone: true,
-  message: true,
+export const insertInquirySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  phone: z.string().min(1, "Phone is required"),
+  message: z.string().min(1, "Message is required"),
 });
 
 export type InsertInquiry = z.infer<typeof insertInquirySchema>;
-export type Inquiry = typeof inquiries.$inferSelect;
+export type Inquiry = InsertInquiry & { id: number; createdAt: Date };
 
-export const services = pgTable("services", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  imageUrl: text("image_url").notNull(),
-  slug: text("slug").notNull(),
+export const serviceSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  description: z.string(),
+  imageUrl: z.string(),
+  slug: z.string(),
 });
 
-export type Service = typeof services.$inferSelect;
-export type InsertService = typeof services.$inferInsert;
+export type Service = z.infer<typeof serviceSchema>;
+export type InsertService = Omit<Service, "id">;
 
-export const testimonials = pgTable("testimonials", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  location: text("location").notNull(),
-  content: text("content").notNull(),
-  imageUrl: text("image_url"),
+export const testimonialSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  location: z.string(),
+  content: z.string(),
+  imageUrl: z.string().optional(),
 });
 
-export type Testimonial = typeof testimonials.$inferSelect;
-export type InsertTestimonial = typeof testimonials.$inferInsert;
+export type Testimonial = z.infer<typeof testimonialSchema>;
+export type InsertTestimonial = Omit<Testimonial, "id">;

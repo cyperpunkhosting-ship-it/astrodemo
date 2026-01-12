@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
-import { useCreateInquiry } from "@/hooks/use-inquiries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
 import { Loader2, Send } from "lucide-react";
+import { useState } from "react";
 
 export function ContactForm() {
-  const mutation = useCreateInquiry();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<InsertInquiry>({
     resolver: zodResolver(insertInquirySchema),
@@ -21,11 +23,19 @@ export function ContactForm() {
   });
 
   function onSubmit(data: InsertInquiry) {
-    mutation.mutate(data, {
-      onSuccess: () => {
-        form.reset();
-      },
-    });
+    setIsSubmitting(true);
+    // Simulate submission delay
+    setTimeout(() => {
+      console.log("Form submitted:", data);
+      toast({
+        title: "Inquiry Sent!",
+        description: "Baba Siddheshwar Nath Aghori will contact you shortly.",
+        variant: "default",
+        className: "bg-green-600 text-white border-none",
+      });
+      form.reset();
+      setIsSubmitting(false);
+    }, 1000);
   }
 
   return (
@@ -91,12 +101,12 @@ export function ContactForm() {
             )}
           />
 
-          <Button 
-            type="submit" 
-            disabled={mutation.isPending}
+          <Button
+            type="submit"
+            disabled={isSubmitting}
             className="w-full bg-gradient-to-r from-primary to-red-600 hover:from-primary/90 hover:to-red-700 text-white font-bold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            {mutation.isPending ? (
+            {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting...
               </>
