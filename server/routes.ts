@@ -46,38 +46,38 @@ async function seedDatabase() {
     await db.insert(services).values([
       {
         title: "Lost Love Back",
-        description: "Use astrological treatments to regain your lost love. Repair connections and resolve issues.",
-        imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7",
+        description: "Use astrological treatments to regain your lost love. Repair connections and resolve issues with ancient spiritual wisdom.",
+        imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=800",
         slug: "lost-love-back"
       },
       {
         title: "Husband Wife Issues",
-        description: "Resolve husband-wife problems and improve relationships with astrological aid.",
-        imageUrl: "https://images.unsplash.com/photo-1621501103258-3e135c8c1a90",
+        description: "Resolve complex marital conflicts and restore celestial harmony to your sacred union.",
+        imageUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=800",
         slug: "husband-wife-issues"
       },
       {
         title: "Love Problems",
-        description: "Make your life better and keep love problems away. Strengthen your relationship.",
-        imageUrl: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2",
+        description: "Find clarity in your heart's desires. Remove negative energies blocking your path to love.",
+        imageUrl: "https://images.unsplash.com/photo-1518621736915-f3586282c9ee?auto=format&fit=crop&q=80&w=800",
         slug: "love-problems"
       },
       {
         title: "Love Marriage Specialist",
-        description: "Expert guidance for love marriages and overcoming obstacles.",
-        imageUrl: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8",
+        description: "Overcome family objections and social barriers with powerful Vashikaran and astrological remedies.",
+        imageUrl: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800",
         slug: "love-marriage-specialist"
       },
       {
         title: "Family Problem Solution",
-        description: "Peaceful resolutions for family disputes and conflicts.",
-        imageUrl: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb",
+        description: "Harmonize your household energy. Stop domestic disputes and bring peace to your family tree.",
+        imageUrl: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=800",
         slug: "family-problem-solution"
       },
       {
         title: "Business Problems",
-        description: "Astrological solutions for business growth and removing obstacles.",
-        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+        description: "Unlock your financial potential. Remove planetary obstacles hindering your career and business success.",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
         slug: "business-problems"
       }
     ]);

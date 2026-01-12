@@ -1,74 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Mystical Saffron & Deep Red Palette */
-  --primary: 24 100% 50%; /* #FF6600 - Vibrant Saffron/Orange */
-  --primary-foreground: 0 0% 100%;
+  /* Deep Cosmic Palette */
+  --primary: 245 100% 15%; /* Deep Indigo */
+  --primary-foreground: 48 100% 50%; /* Radiant Gold */
   
-  --secondary: 0 72% 41%; /* #B71C1C - Deep Red */
+  --secondary: 271 91% 30%; /* Royal Purple */
   --secondary-foreground: 0 0% 100%;
   
-  --accent: 48 100% 50%; /* #FFD700 - Gold */
-  --accent-foreground: 0 0% 0%;
+  --accent: 48 100% 50%; /* Radiant Gold */
+  --accent-foreground: 245 100% 5%;
   
-  --background: 40 33% 98%; /* Light Cream/Beige */
-  --foreground: 20 14% 15%; /* Dark Brownish Text */
+  --background: 245 100% 3%; /* Near Black Indigo */
+  --foreground: 48 100% 90%; /* Soft Cream Gold */
   
-  --card: 0 0% 100%;
-  --card-foreground: 20 14% 15%;
+  --card: 245 100% 8%; /* Dark Indigo Card */
+  --card-foreground: 48 100% 90%;
+  --card-border: 48 100% 50% / 0.2;
   
-  --popover: 0 0% 100%;
-  --popover-foreground: 20 14% 15%;
+  --popover: 245 100% 8%;
+  --popover-foreground: 48 100% 90%;
   
-  --muted: 40 20% 94%;
-  --muted-foreground: 25 10% 45%;
+  --muted: 245 100% 12%;
+  --muted-foreground: 48 50% 70%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 30 20% 90%;
-  --input: 30 20% 90%;
-  --ring: 24 100% 50%;
+  --border: 48 100% 50% / 0.15;
+  --input: 48 100% 50% / 0.1;
+  --ring: 48 100% 50%;
   
   --radius: 0.5rem;
 
-  --font-display: 'Crimson Text', serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Lato', sans-serif;
-}
-
-.dark {
-  /* Dark Mystical Mode */
-  --background: 20 14% 8%;
-  --foreground: 40 33% 98%;
-  
-  --card: 20 14% 12%;
-  --card-foreground: 40 33% 98%;
-  
-  --popover: 20 14% 12%;
-  --popover-foreground: 40 33% 98%;
-  
-  --primary: 24 90% 55%;
-  --primary-foreground: 0 0% 100%;
-  
-  --secondary: 0 60% 45%;
-  --secondary-foreground: 0 0% 100%;
-  
-  --muted: 20 14% 16%;
-  --muted-foreground: 30 10% 65%;
-  
-  --accent: 48 90% 55%;
-  --accent-foreground: 0 0% 0%;
-  
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 0% 98%;
-  
-  --border: 20 14% 20%;
-  --input: 20 14% 20%;
-  --ring: 24 90% 55%;
 }
 
 @layer base {
@@ -76,46 +46,57 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground;
     font-family: var(--font-body);
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(74, 20, 140, 0.1) 0%, transparent 50%),
+      url("https://www.transparenttextures.com/patterns/stardust.png");
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply font-semibold;
+    @apply font-bold tracking-tight;
   }
 }
 
-.font-display {
-  font-family: var(--font-display);
+@layer utilities {
+  .glow-gold {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  }
+  .glow-purple {
+    box-shadow: 0 0 25px rgba(147, 51, 234, 0.2);
+  }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent;
+  }
+  .mystical-border {
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    position: relative;
+  }
+  .mystical-border::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+    z-index: -1;
+    opacity: 0.5;
+  }
 }
 
-.text-gold {
-  color: hsl(var(--accent));
+/* Parallax Effect Simulation */
+.bg-celestial {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.bg-gold {
-  background-color: hsl(var(--accent));
-}
-
-.text-shadow-sm {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-}
-
-.text-shadow-md {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-/* Custom Scrollbar for a premium feel */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: #05051a;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.5);
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary));
+  background: linear-gradient(to bottom, #4a148c, #ffd700);
+  border-radius: 4px;
 }
